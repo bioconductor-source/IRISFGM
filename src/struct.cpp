@@ -90,7 +90,7 @@ void *xmalloc(int size)
   /*malloc: The function malloc() returns a pointer to a chunk of memory of size
    *size, or NULL if there is an error. The memory pointed to will be on the
    *heap, not the stack, so make sure to free it when you are done with it.*/
-  register void *value = malloc(size);
+  auto void *value = malloc(size);
   if (value == NULL)
     errAbort("Memory exhausted (xmalloc)");
   return value;
@@ -103,7 +103,7 @@ void *xrealloc(void *ptr, int size)
  * lesser of the new and old sizes, even if the block is moved. If the new size
  * is larger, the value of the newly allocated portion is indeterminate.*/
 {
-  register void *value = realloc(ptr, size);
+  auto void *value = realloc(ptr, size);
   if (value == NULL)
     errAbort("Memory exhausted (xrealloc)");
   return value;
