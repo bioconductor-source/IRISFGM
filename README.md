@@ -41,7 +41,7 @@ BiocManager::install(c('org.Mm.eg.db','multtest','org.Hs.eg.db','clusterProfiler
 3. Install IRISFGM from github:
 
 ```
-devtools::install_github("BMEngineeR/IRISFGM")
+devtools::install_github("BMEngineeR/IRISFGM"，ref="main")
 ```
 
 Now the MetaQUBIC is successfully installed and ready for use. 
