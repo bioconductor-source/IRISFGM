@@ -2,6 +2,11 @@
 .Rhistory
 .RData
 .Ruserdata
+.IRISFGM.Rproj
 src/*.o
 src/*.so
 src/*.dll
+vignettes/*html
+vignettes/*md
+vignettes/*R
+
