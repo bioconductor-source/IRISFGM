@@ -103,15 +103,15 @@ NULL
         heatmap.matrix <- object@Processed_count[rownames(annotation_row), rownames(annotation_col)]
         
     }
-    for (i in 1:ncol(annotation_col)) {
+    for (i in seq_len(ncol(annotation_col))) {
         annotation_col[, i] <- as.factor(annotation_col[, i])
     }
     ann_colors <- list()
-    for (i in 1:ncol(annotation_col)) {
+    for (i in seq_len(ncol(annotation_col))) {
         if (colnames(annotation_col)[i] == "bicluster_cell"){
             tmp.col.name <- as.character(unique(annotation_col[, i]))
             if(length(tmp.col.name) == 2 ){
-                tmp.color <- brewer.pal(n = 3, name = "Dark2")[1:2]
+                tmp.color <- brewer.pal(n = 3, name = "Dark2")[seq_len(2)]
             } else if (length(tmp.col.name) == 3){
                 tmp.color <- brewer.pal(n = length(tmp.col.name), name = "Dark2")  
             }  

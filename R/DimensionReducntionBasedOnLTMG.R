@@ -25,7 +25,7 @@ NULL
 #'    perplexity = 15, 
 #'    seed = 1)
 #'
-.runDimensionReduction <- function(object, mat.source = c("LTMG", "UMImatrix"), reduction = "umap", dims = 1:15, perplexity = 15, seed = 1) {
+.runDimensionReduction <- function(object, mat.source = c("LTMG", "UMImatrix"), reduction = "umap", dims = seq_len(15), perplexity = 15, seed = 1) {
     if (mat.source == "LTMG") {
         Tmp.seurat <- CreateSeuratObject(object@LTMG@LTMG_discrete)
         Tmp.seurat <- ScaleData(Tmp.seurat)
@@ -84,7 +84,7 @@ setMethod("RunDimensionReduction", "IRISFGM", .runDimensionReduction)
 #' k.param = 20, 
 #' resolution = 0.6,
 #' algorithm = 1)
-.runClassification <- function(object, dims = 1:15, k.param = 20, resolution = 0.6, algorithm = 1) {
+.runClassification <- function(object, dims = seq_len(15), k.param = 20, resolution = 0.6, algorithm = 1) {
     if (is.null(object@LTMG@Tmp.seurat)) {
         stop("There is no temporary seurat obejct getting detected. \n Try to run RundimensionRuduction first.")
     }

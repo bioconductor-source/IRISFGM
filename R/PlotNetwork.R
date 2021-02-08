@@ -14,7 +14,7 @@ NULL
     bic.number <- length(unique(object@BiCluster@CoCond_cell$Condition))
     Bic <- c()
     Bic.name <- c()
-    for (i in 1:bic.number) {
+    for (i in seq_len(bic.number)) {
         gene.name <- object@BiCluster@CoReg_gene$Gene[object@BiCluster@CoReg_gene$Condition == i]
         cell.name <- object@BiCluster@CoCond_cell$cell_name[object@BiCluster@CoCond_cell$Condition == i]
         tmp.Bic <- tmp.expression[gene.name, cell.name]
@@ -46,14 +46,14 @@ NULL
 #' PlotNetwork(example_object,
 #' N.bicluster =c(1:20))
 globalVariables(c("name", "weight", "status","weight"))
-.plotnetwork <- function(object, edge.by = "gene", lay.out = "linear", N.bicluster = c(1:20)) {
+.plotnetwork <- function(object, edge.by = "gene", lay.out = "linear", N.bicluster = seq_len(20)) {
     Bic.list <- .separateBic(object)
     Bic.list.select <- Bic.list[N.bicluster]
-    ntwork.adjacency.mtx <- matrix(1:(length(N.bicluster) * length(N.bicluster)),
+    ntwork.adjacency.mtx <- matrix(seq_len((length(N.bicluster) * length(N.bicluster))),
                                    nrow = length(N.bicluster))
     rownames(ntwork.adjacency.mtx) <- colnames(ntwork.adjacency.mtx) <- names(Bic.list.select)
-    for (i in 1:nrow(ntwork.adjacency.mtx)) {
-        for (j in 1:ncol(ntwork.adjacency.mtx)) {
+    for (i in seq_len(nrow(ntwork.adjacency.mtx))) {
+        for (j in seq_len(ncol(ntwork.adjacency.mtx))) {
             tmp.block.1 <- Bic.list.select[[rownames(ntwork.adjacency.mtx)[i]]]
             tmp.block.2 <- Bic.list.select[[colnames(ntwork.adjacency.mtx)[j]]]
             if (edge.by == "gene") {

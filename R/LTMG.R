@@ -54,7 +54,7 @@ BIC_LTMG <- function(y, rrr, Zcut) {
     y0 <- y[which(y >= Zcut)]
     
     cc <- c()
-    for (i in 1:nrow(rrr)) {
+    for (i in seq_len(nrow(rrr))) {
         c <- dnorm(y0, u[i], sig[i]) * w[i]
         cc <- rbind(cc, c)
     }
@@ -82,7 +82,7 @@ BIC_ZIMG <- function(y, rrr, Zcut) {
     sig <- rrr[, 3]
     y0 <- y[which(y >= Zcut)]
     cc <- c()
-    for (i in 1:nrow(rrr)) {
+    for (i in seq_len(nrow(rrr))) {
         c <- dnorm(y0, u[i], sig[i]) * w[i]
         cc <- rbind(cc, c)
     }
@@ -135,7 +135,7 @@ KS_LTMG <- function(y, rrr, Zcut) {
     y0 <- y[which(y >= Zcut)]
     p_x <- rep(0, length(y0))
     
-    for (j in 1:num_c) {
+    for (j in seq_len(num_c)) {
         p_x <- p_x + pnorm(y0, mean = rrr[j, 2], sd = rrr[j, 3]) * rrr[j, 1]
     }
     
@@ -158,7 +158,7 @@ KS_ZIMG <- function(y, rrr, Zcut) {
     y0 <- sort(y0)
     p_x <- rep(0, length(y0))
     
-    for (j in 1:num_c) {
+    for (j in seq_len(num_c)) {
         p_x <- p_x + pnorm(y0, mean = rrr[j, 2], sd = rrr[j, 3]) * rrr[j, 1]
     }
     
@@ -209,7 +209,7 @@ Fit_LTMG <- function(x, n, q, k, err = 1e-10) {
         return(cbind(0, 0, 0))
     }
     mean <- c()
-    for (i in 1:k) {
+    for (i in seq_len(k)) {
         mean <- c(mean, sort(x)[floor(i * length(x)/(k + 1))])
     }
     mean[1] <- min(x) - 1  # What is those two lines for?
@@ -218,7 +218,7 @@ Fit_LTMG <- function(x, n, q, k, err = 1e-10) {
     sd <- rep(sqrt(var(x)), k)
     pdf.x.portion <- matrix(0, length(x), k)
     
-    for (i in 1:n) {
+    for (i in seq_len(n)) {
         p0 <- p
         mean0 <- mean
         sd0 <- sd
@@ -339,14 +339,14 @@ LTMG <- function(VEC, Zcut_G, k = 5) {
         message("using all genes.")
         Gene_use_name <- rownames(MAT)
     } else {
-        Gene_use_name <- rownames(MAT)[order(apply(MAT, 1, var), decreasing = TRUE)[1:Gene_use]]
+        Gene_use_name <- rownames(MAT)[order(apply(MAT, 1, var), decreasing = TRUE)[seq_len(Gene_use)]]
     }
     
     LTMG_Res <- c()
     SEQ <- floor(seq(from = 1, to = length(Gene_use_name), length.out = 11))
     
     #set.seed(seed)
-    for (i in 1:length(Gene_use_name)) {
+    for (i in seq_len(length(Gene_use_name))) {
         if (i %in% SEQ) {
             cat(paste0("Progress:", (grep("T", SEQ == i) - 1) * 10, "%\n"))
         }
@@ -404,7 +404,7 @@ LTMG <- function(VEC, Zcut_G, k = 5) {
             
             y_use <- y[y > Zcut]
             y_value <- NULL
-            for (k in 1:nrow(rrr_use)) {
+            for (k in seq_len(nrow(rrr_use))) {
                 TEMP <- dnorm(y_use, mean = rrr_use[k, 2], sd = rrr_use[k, 3]) * rrr_use[k, 1]
                 y_value <- rbind(y_value, TEMP)
             }
@@ -515,18 +515,18 @@ setMethod("GetBinarySingleSignal", "IRISFGM", .GetBinarySingleSignal)
     pb <- txtProgressBar(min = 0, max = nrow(x), style = 3)
     start.idx <- 1
     name.MultiSig <- c()
-    for (i in 1:nrow(x)) {
+    for (i in seq_len(nrow(x))) {
         tmp.gene <- x[i, ]
         tmp.gene.name <- rownames(x)[i]
         tmp.signal <- max(tmp.gene)
         end.idx <- start.idx+tmp.signal-1
         sub.MultiSig <- c()
-        for (j in 1:tmp.signal) {
+        for (j in seq_len(tmp.signal)) {
             tmp.sub.ms <- ifelse(tmp.gene == j, 1, 0)
             sub.MultiSig <- rbind(sub.MultiSig, tmp.sub.ms)
         }
         MultiSig[start.idx:end.idx,] <- sub.MultiSig
-        name.MultiSig <- c(name.MultiSig,paste0(tmp.gene.name, "_", 1:tmp.signal))
+        name.MultiSig <- c(name.MultiSig,paste0(tmp.gene.name, "_", seq_len(tmp.signal)))
         start.idx <- end.idx+1
         setTxtProgressBar(pb, i)
     }

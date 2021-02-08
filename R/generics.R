@@ -46,6 +46,12 @@ setGeneric(name = "RunLTMG", def = function(object, ...) standardGeneric("RunLTM
 #' @rdname GetLTMGmatrix
 setGeneric(name = "GetLTMGmatrix", def = function(object, ...) standardGeneric("GetLTMGmatrix"))
 
+#' getMeta
+#'
+#' @param object input IRIS-FGM object
+#' @export
+#' @rdname getMeta
+setGeneric(name = "getMeta", def = function(object) standardGeneric("getMeta"))
 
 #' CalBinarySingleSignal
 #'

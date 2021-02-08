@@ -116,3 +116,22 @@ setMethod("PlotMeta", "IRISFGM", .plotMeta)
 #' @rdname SubsetData
 #' @export
 setMethod("SubsetData", "IRISFGM", .subset_data)
+
+#' Obtain meta information from IRISFGM object
+#' 
+#' Obtain meta information from IRISFGM object
+#'
+#' @param object input IRISFGM object 
+#'
+#' @return this function will reture the meta information for IRISFGM object.
+#' @name getMeta
+#' @examples
+#'data(example_object)
+#'meta_infor <- getMeta(example_object)
+.getmeta <- function( object){
+  return(object@MetaInfo)
+}
+
+#' @rdname getMeta
+#' @export
+setMethod("getMeta", "IRISFGM", .getmeta)

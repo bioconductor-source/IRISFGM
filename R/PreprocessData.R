@@ -37,7 +37,7 @@ NULL
     }
     Input <- object@Raw_count[, rownames(object@MetaInfo)]
     #set.seed(seed)
-    random.number <- sample(c(1:nrow(Input)), 100)
+    random.number <- sample(c(seq_len(nrow(Input))), 100)
     if (all(as.numeric(unlist(Input[random.number, ]))%%1 == 0)) {
         ## normalization##############################
         if (grepl("cpm", ignore.case = TRUE, normalization)) {

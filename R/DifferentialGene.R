@@ -19,22 +19,22 @@ NULL
 .findMarker <- function(object, SimpleResult = TRUE, FDR = 0.05) {
     # two group number as factor.
     message("select condition to compare")
-    message(paste0(c(1:ncol(object@MetaInfo)), " : ", c(colnames(object@MetaInfo)), "\n"))
+    message(paste0(c(seq_len(ncol(object@MetaInfo))), " : ", c(colnames(object@MetaInfo)), "\n"))
     ident.index <- readline(prompt = "select index of cell condition: ")
     ident.index <- as.numeric(ident.index)
     tmp.ident <- object@MetaInfo[, ident.index]
     names(tmp.ident) <- rownames(object@MetaInfo)
     label.used <- colnames(object@MetaInfo)[ident.index]
     # create index table
-    tmp.group.table <- data.frame(index = 1:length(unique(tmp.ident)), 
+    tmp.group.table <- data.frame(index = seq_len(length(unique(tmp.ident))), 
                                   condition = as.character(sort(unique(tmp.ident))), 
                                   stringsAsFactors = FALSE)
     tmp.group.table <- rbind(tmp.group.table, c(nrow(tmp.group.table) + 1, "rest of all"))
     # select groups to compare
     message("select index (left) of first group to compare : ")
-    message(paste0(tmp.group.table$index[1:nrow(tmp.group.table) - 1], 
+    message(paste0(tmp.group.table$index[seq_len(nrow(tmp.group.table)) - 1], 
                    " : ", 
-                   tmp.group.table$condition[1:nrow(tmp.group.table) - 1], 
+                   tmp.group.table$condition[seq_len(nrow(tmp.group.table)) - 1], 
                    "\n"))
     group.1.idx <- readline("input first group index : ")
     message("select index (left) of second group to compare : ")
@@ -163,14 +163,14 @@ PlotMarkerHeatmap <- function(Globalmarkers = NULL,
                               label.size = 1) {
     marker.list <- Globalmarkers
     marker.list <- marker.list[marker.list$p_val_adj < p.adj, ]
-    marker.cluster.index <- as.data.frame(cbind(index = 1:length(unique(marker.list$cluster)), 
+    marker.cluster.index <- as.data.frame(cbind(index = seq_len(length(unique(marker.list$cluster))), 
                                                 cluster = unique(as.character(marker.list$cluster))), 
                                           stringsAsFactors = FALSE)
     sub.marker.list <- c()
-    for (i in 1:length(unique(marker.list$cluster))) {
+    for (i in seq_len(length(unique(marker.list$cluster)))) {
         tmp.cluster <- marker.cluster.index$cluster[marker.cluster.index$index == i]
         tmp.marker.list <- marker.list[marker.list$cluster == tmp.cluster, ]
-        tmp.marker.list <- tmp.marker.list[1:top.gene, ]
+        tmp.marker.list <- tmp.marker.list[seq_len(top.gene), ]
         sub.marker.list <- rbind(sub.marker.list, tmp.marker.list)
     }
     if (is.null(idents)){

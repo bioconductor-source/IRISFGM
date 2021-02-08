@@ -70,16 +70,18 @@ NULL
 #' @importFrom AnnotationDbi select
 #' @name RunPathway
 #' @return It will reture a function enrichment analysis.
-#' @examples # If you want to perform this function based on identified DEGs, you should use: 
-#' #object <- RunPathway(object = NULL,N.bicluster = NULL, selected.gene.cutoff = 0.05,
-#' # species = 'Human', database = 'GO', genes.source = 'CTS')
+#' @examples 
 #' 
 #' # To rum this function based on the gene module from an identified bicluster use: 
-#' # data("example_object")
-#' # object <- RunPathway(object = example_object, 
-#' # N.bicluster = 4, 
-#' # selected.gene.cutoff = 0.05,
-#' # species = 'Human', database = 'GO', genes.source = 'Bicluster')
+#' data("example_object")
+#' # due to execute time for this function, please use the function below
+#' \donttest{
+#' object <- RunPathway(object = example_object, 
+#'  N.bicluster = 4, 
+#'  selected.gene.cutoff = 0.05,
+#'  species = 'Human', database = 'GO', genes.source = 'Bicluster')
+#' }
+
 .runPathway <- function(object = NULL, 
                         N.bicluster = c(10, 11, 12, 13), 
                         selected.gene.cutoff = 0.05, 
