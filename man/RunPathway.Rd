@@ -50,13 +50,14 @@ This function will perform enrichment analysis based on a gene module or identif
 This function is also depended on clusterProfiler, AnnotationDbi, org.Mm.eg.db, and org.Hs.eg.db package.
 }
 \examples{
-# If you want to perform this function based on identified DEGs, you should use: 
-\dontrun{object <- RunPathway(object = NULL,N.bicluster = NULL, selected.gene.cutoff = 0.05,
-species = 'Human', database = 'GO', genes.source = 'CTS' }
+
 # To rum this function based on the gene module from an identified bicluster use: 
 data("example_object")
+# due to execute time for this function, please use the function below
+\donttest{
 object <- RunPathway(object = example_object, 
-N.bicluster = 4, 
-selected.gene.cutoff = 0.05,
-species = 'Human', database = 'GO', genes.source = 'Bicluster')
+ N.bicluster = 4, 
+ selected.gene.cutoff = 0.05,
+ species = 'Human', database = 'GO', genes.source = 'Bicluster')
+}
 }

@@ -10,13 +10,6 @@
 #' @export
 #' @importFrom Matrix sparseMatrix
 #' @return It will return a gene expression matrix. 
-#' @examples 
-#' # due to limitation of data size, we only put function here.
-#' # please run the function below
-#' \donttest{
-#' input_mat <- ReadFrom10X_h5(input= 'my.h5')
-#' }
-#' 
 ReadFrom10X_h5 <- function(input = NULL, use.names = TRUE, unique.features = TRUE) {
     if (!requireNamespace("hdf5r", quietly = TRUE)) {
         stop("Please install hdf5r by using install.packages('hdf5r')")
@@ -86,13 +79,7 @@ setMethod("ReadFrom10X_h5", "IRISFGM", ReadFrom10X_h5)
 #' @export
 #' @importFrom Matrix readMM
 #'
-#' @examples 
-#' # due to limitation of data size, we only put function here.
-#' # please run the function below
-#' # the input of 10x folder should contain three files, including barcode file, gene file, and sparse matrix
-#' \donttest{
-#' input_mat <- ReadFrom10X_folder(input.dir = 'my_path_to_folder')
-#' }
+
 ReadFrom10X_folder <- function(input.dir = NULL) {
     
     my.path <- input.dir

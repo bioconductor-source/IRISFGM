@@ -169,8 +169,8 @@ void make_graph(const char *fn) {
         const int cnt3 = cnt;
         cnt = ceil(2 * cnt3 * spearman * fscore);
         const continuous final = 2 * cnt3 * spearman * fscore;
-        printf("%s\t%s\t%d\t%d\t%d\t%.2f\t%.2f\t%.2f\n", genes_n[row1],
-               genes_n[row2], cnt3, cnt1, cnt2, fscore, spearman, final);
+       // printf("%s\t%s\t%d\t%d\t%d\t%.2f\t%.2f\t%.2f\n", genes_n[row1],
+         //      genes_n[row2], cnt3, cnt1, cnt2, fscore, spearman, final);
       }
 
       if (cnt < (*cur_min)->score)

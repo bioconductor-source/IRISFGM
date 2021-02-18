@@ -31,7 +31,14 @@ If you have a large dataset, We recommend you should use Seurat clustering wrapp
 \code{\link{RunDimensionReduction}}, and \code{\link{RunClassification}}.
 }
 \examples{
-# data(example_object)
-# example_object <- FindClassBasedOnMC(example_object)
-
+data(example_object)
+example_object<- RunLTMG(example_object,Gene_use = "200")
+example_object <- CalBinaryMultiSignal(example_object)
+example_object <- RunBicluster(example_object,
+                              DiscretizationModel = 'LTMG',
+                              OpenDual = FALSE,
+                              NumBlockOutput = 1000,
+                              BlockOverlap = 0.7,
+                              BlockCellMin = 15)
+example_object <- FindClassBasedOnMC(example_object)
 }

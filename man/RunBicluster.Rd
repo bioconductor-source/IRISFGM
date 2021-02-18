@@ -54,21 +54,15 @@ This function will identify the Biclusters based on LTMG or Quantile normalizati
 }
 \examples{
 # based on LTMG discretization
-# data(example_data)
-# example_object <- RunBicluster(example_object, 
-# DiscretizationModel = 'LTMG',
-# OpenDual = F,
-# NumBlockOutput = 1000, 
-# BlockOverlap = 0.7, 
-# BlockCellMin = 15)
+data("example_object")
+example_object<- RunLTMG(example_object,Gene_use = "200")
+example_object <- CalBinaryMultiSignal(example_object)
+example_object <- RunBicluster(example_object, 
+                              DiscretizationModel = 'LTMG',
+                              OpenDual = FALSE,
+                              NumBlockOutput = 1000, 
+                              BlockOverlap = 0.7, 
+                              BlockCellMin = 15)
 
-# based on quantile discretization
-# data(example_data)
-# example_object <- RunBicluster(example_object, 
-# DiscretizationModel = 'Quantile',
-# OpenDual = F, 
-# NumBlockOutput = 1000, 
-# BlockOverlap = 0.7, 
-# BlockCellMin = 15)
 
 }

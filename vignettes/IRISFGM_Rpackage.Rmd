@@ -46,7 +46,7 @@ The computational frame is constructed under the S4 data structure in R. The str
     - -**MarkerGene:** *Marker gene based on cell type identified by Seurat clustering method.*
     - -**Pathway:** *based on marker gene.*
     - -**tmp.Seurat:** *temporary Seurat object. In this Seurat Object, the starting matrix is LTMG signalling matrix.*
-  - -**Bicluster:** **
+  - -**Bicluster:**
     - -**Coreg_gene:** *co-regulatory genes are stored in this slot as dataframe; the first column is gene name and the second column is module number.*
     - -**CoCond_cell:** *co-condition cell are stored in this slot as dataframe; the first column is cell name and the second column is module number.*
     - -**MarkerGene:** *Marker gene based on cell type identified by Markov chain clustering algorithm.*
@@ -63,11 +63,17 @@ We will assum you have the following installed:
 * R (equal or greater than 3.5)
 
 Pre-install packge
-`install.packages(c('BiocManager','devtools', 'AdaptGauss', "pheatmap", 'mixtools','MCL', 'anocva', "Polychrome", 'qgraph','Rtools','ggpubr',"ggraph"))`
-                   
-`BiocManager::install(c('org.Mm.eg.db','multtest', 'org.Hs.eg.db','clusterProfiler','DEsingle', 'DrImpute', 'scater', 'scran'))`
-                       
-`devtools::install_github(repo = 'satijalab/seurat')`
+```{r pre_install, eval = FALSE}
+if(!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+# install from bioconductor
+BiocManager::install(c('org.Mm.eg.db','multtest', 'org.Hs.eg.db','clusterProfiler','DEsingle', 'DrImpute', 'scater', 'scran'))
+# install from cran
+chooseCRANmirror()
+BiocManager::install(c('devtools', 'AdaptGauss', "pheatmap", 'mixtools','MCL', 'anocva', "Polychrome", 'qgraph','Rtools','ggpubr',"ggraph", "Seurat"))
+
+```
+
 
 ## Input
 
@@ -87,7 +93,9 @@ When you perform co-expression analysis, it will output several intermediate fil
 
 For installation, simply type the following command in your R console, please select option 3 when R asks user to update packages:
 
-`devtools::install_github("BMEngineeR/IRISFGM", force = TRUE)`
+```{r install_IRISFGM, eval= FALSE}
+BiocManager::install("IRISFGM")
+```
 
 
 # Example dataset
@@ -115,11 +123,17 @@ library(IRISFGM)
 ```
 
 2. Read from .h5 file. 
-`ReadFrom10X_h5("~/5k_pbmc_protein_v3_filtered_feature_bc_matrix.h5")`
+```{r input_h5, eval= TRUE, echo = TRUE}
+# if you will use the ".h5" as input file, please uncomment the following command.
+# input_matrix <- ReadFrom10X_h5("dir_to_your_hdf5_file")
+```
 
 3. Read from 10X folder, which should contain three files (barcode, gene name, and sparse matrix)
 
-`ReadFrom10X_folder("~/hg19/")`
+```{r input_10x, eval = TRUE, echo = TRUE}
+# if you will use the 10x folder as input file, please uncomment the following command.
+# input_matrix <- ReadFrom10X_folder("dir_to_10x_folder")
+```
 
 4. Read from .csv or .txt file
 
@@ -171,7 +185,7 @@ object <- ProcessData(object, normalization = "cpm", IsImputation = FALSE)
 # 2. Run LTMG
 
 The argument `Gene_use = 500` is  top 500 highlt variant genes which are selected to run LTMG. For quick mode, we recommend to use top 2000 gene (here we use top 500 gene for saving time). On the contrary, for co-expression gene analysis, we recommend to use all gene by changing `Gene_use = "all"`. 
-```{r run_LTMG, echo = TRUE,eval = FALSE}
+```{r run_LTMG, echo = TRUE,eval = TRUE}
 # do not show progress bar
 quiet <- function(x) { 
   sink(tempfile()) 
@@ -191,26 +205,18 @@ LTMG_Matrix[1:5,1:5]
 IRIS-FGM can provide biclustering function, which is based on our in-house novel algorithm, 
 QUBIC2 (<https://github.com/maqin2001/qubic2>). Here we will show the basic biclustering 
 usage of IRIS-FGM using a $500\times 87$ expression matrix generated from previous top 500 variant genes. 
-However, we recommend user should use `Gene_use = all` to generate LTMG matrix. 
+However, we recommend user should use "Gene_use = all"" to generate LTMG matrix. 
 
 ## LTMG-discretized bicluster (recommend for small single cell RNA-seq data)
 User can type the following command to run discretization (LTMG) + biclustering directly:
-```{r biclustering_basedLTMG,eval= FALSE,echo = TRUE}
+```{r biclustering_basedLTMG,eval= TRUE,echo = TRUE}
 object <- CalBinaryMultiSignal(object)
-object <- RunBicluster(object, DiscretizationModel = "LTMG",OpenDual = FALSE,
-                       NumBlockOutput = 100, BlockOverlap = 0.5, BlockCellMin = 25)
+# Please uncomment the following command and make sure to set a correct working directory so that the following command will generate intermeidate files.
+# object <- RunBicluster(object, DiscretizationModel = "LTMG",OpenDual = FALSE,
+#                        NumBlockOutput = 100, BlockOverlap = 0.5, BlockCellMin = 25)
 
 ```
 
-## Quantile-discretized bicluster (recommend for bulk RNA-Seq, microarray data, or large single cell RNA-Seq data)
-
-This will output several files, and among them you will find one named  `tmp_expression.txt.chars.blocks`,which contains the predicted biclusters.
-Or, user may use first version discretization strategy provided by QUBIC 1.0.
-```{r biclustering_basedQuantile,eval=FALSE,echo = TRUE}
-object <- RunDiscretization(object)
-object <- RunBicluster(object, DiscretizationModel = "Quantile",OpenDual = FALSE,
-                       NumBlockOutput = 100, BlockOverlap = 0.5, BlockCellMin = 25)
-```
 
 
 (The default parameters in IRIS-FGM are BlockCellMin=15, BlockOverlap=0.7,
@@ -221,7 +227,7 @@ Extension=0.90, NumBlockOutput=100 you may use other parameters as you like, jus
 
 ## 4.1 Perform dimension Reduction and implement Seurat clustering method.
 User can use `reduction = "umap"` or `reductopm = "tsne"` to perform dimension reduction. 
-```{r Run_dimReduce, eval= FALSE, echo = TRUE}
+```{r Run_dimReduce, eval= TRUE, echo = TRUE}
 # demo only run top 500 gene for saving time.
 object <- RunDimensionReduction(object, mat.source = "UMImatrix",reduction = "umap")
 object <- RunClassification(object, k.param = 20, resolution = 0.8, algorithm = 1)
@@ -231,12 +237,13 @@ object <- RunClassification(object, k.param = 20, resolution = 0.8, algorithm = 
 
 The cell cluster prediction of IRIS-FGM is based on the biclustering results. 
 In short, it will construct a weighted graph based on the biclusters and then do clustering on the weighted graph. To facilitate the process, we will use the pre-generated object to perform cell clustering result based on biclustering results.
-```{r cell_type, eval=FALSE, echo =TRUE}
-object <- FindClassBasedOnMC(object)
+```{r cell_type, eval=TRUE, echo =TRUE}
+# Please uncomment the following command and make sure your working directory is the same as the directory containing intermediate output files. 
+# object <- FindClassBasedOnMC(object)
 ```
 ```{r load_example_object, eval= TRUE, echo = TRUE}
 data("example_object")
-example_object@MetaInfo[1:5,]
+getMeta(example_object)[1:5,]
 ```
 
 # 5. Visualization and interpretation
@@ -246,11 +253,6 @@ example_object@MetaInfo[1:5,]
 PlotNetwork(example_object,N.bicluster = c(1:20))
 ```
 
-### Perform pathway enrichment analysis on the selected the 1st FGM and visualize the results.
-```{r bicluster_pathway, eval=TRUE, echo =TRUE}
-example_object <- RunPathway(example_object, N.bicluster =4, species = "Human",database = "GO",genes.source = "Bicluster")
-DotPlotPathway(example_object,genes.source = "Bicluster")
-```
 
 ### Heatmap shows relations between any two biclusters (1th and 15th bicluster). 
 ```{r bicluster_heatmap, eval=TRUE, echo =TRUE}

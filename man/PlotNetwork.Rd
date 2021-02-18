@@ -11,7 +11,7 @@ PlotNetwork(object, ...)
   object,
   edge.by = "gene",
   lay.out = "linear",
-  N.bicluster = c(1:20)
+  N.bicluster = seq_len(20)
 )
 }
 \arguments{

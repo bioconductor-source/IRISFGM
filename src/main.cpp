@@ -19,9 +19,9 @@ int main(const int argc, char *argv[]) {
 int do_qubic(const int argc, char *argv[]) {
   /* Start the timer */
   uglyTime(NULL);
-  printf("\nQUBIC %.1f: greedy biclustering (compiled " __DATE__ " " __TIME__
-         ")\n\n",
-         VER);
+  //printf("\nQUBIC %.1f: greedy biclustering (compiled " __DATE__ " " __TIME__
+  //       ")\n\n",
+  //       VER);
   rows = cols = 0;
 
   /* get the program options defined in get_options.c */

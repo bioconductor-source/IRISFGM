@@ -10,7 +10,7 @@ RunClassification(object, ...)
 
 .runClassification(
   object,
-  dims = 1:15,
+  dims = seq_len(15),
   k.param = 20,
   resolution = 0.6,
   algorithm = 1
@@ -18,7 +18,7 @@ RunClassification(object, ...)
 
 \S4method{RunClassification}{IRISFGM}(
   object,
-  dims = 1:15,
+  dims = seq_len(15),
   k.param = 20,
   resolution = 0.6,
   algorithm = 1

@@ -22,16 +22,16 @@ void progress(const char *format, ...)
 {
   va_list args;
   va_start(args, format);
-  vfprintf(stdout, format, args);
-  fprintf(stdout, "\n");
+  //vfprintf(stdout, format, args);
+  //fprintf(stdout, "\n");
   va_end(args);
 }
 
 void verboseDot()
 /* Print "i-am-alive" dot */
 {
-  putchar('.');
-  fflush(stdout);
+ // putchar('.');
+  //fflush(stdout);
 }
 
 void err(const char *format, ...)
@@ -39,9 +39,9 @@ void err(const char *format, ...)
 {
   va_list args;
   va_start(args, format);
-  fprintf(stderr, "[Error] ");
-  vfprintf(stderr, format, args);
-  fprintf(stderr, "\n");
+ // fprintf(stderr, "[Error] ");
+ // vfprintf(stderr, format, args);
+ // fprintf(stderr, "\n");
   va_end(args);
 }
 
@@ -50,9 +50,9 @@ void errAbort(const char *format, ...)
 {
   va_list args;
   va_start(args, format);
-  fprintf(stderr, "[Error] ");
-  vfprintf(stderr, format, args);
-  fprintf(stderr, "\n");
+ // fprintf(stderr, "[Error] ");
+ // vfprintf(stderr, format, args);
+ // fprintf(stderr, "\n");
   va_end(args);
   // abort();
 }
@@ -77,8 +77,8 @@ void uglyTime(const char *label, ...)
   va_list args;
   va_start(args, label);
   if (label != NULL) {
-    vfprintf(stdout, label, args);
-    fprintf(stdout, " [%.3f seconds elapsed]\n", (time - lastTime) / 1000.);
+    //vfprintf(stdout, label, args);
+    // fprintf(stdout, " [%.3f seconds elapsed]\n", (time - lastTime) / 1000.);
   }
   lastTime = time;
   va_end(args);
@@ -112,10 +112,10 @@ void *xrealloc(void *ptr, int size)
 /**************************************************************************/
 /* Print out the stack elements */
 void dsPrint(const std::vector<int> &ds) {
-  printf("Stack contains %zu elements\n", ds.size());
-  for (auto d : ds)
-    printf("%d ", d);
-  putchar('\n');
+ // printf("Stack contains %zu elements\n", ds.size());
+  //for (auto d : ds)
+  //  printf("%d ", d);
+  //putchar('\n');
 }
 
 /* Test whether an item is in stack */
@@ -143,8 +143,8 @@ FILE *mustOpen(const char *fileName, const char *mode)
 
   if (sameString(fileName, "stdin"))
     return stdin;
-  if (sameString(fileName, "stdout"))
-    return stdout;
+//  if (sameString(fileName, "stdout"))
+  //  return stdout;
   if ((f = fopen(fileName, mode)) == NULL) {
     const char *modeName = "";
     if (mode) {

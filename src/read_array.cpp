@@ -230,11 +230,11 @@ void read_discrete(FILE *fp) {
       break;
   }
   /* trim the leading spaceholder */
-  printf("Discretized data contains %d classes with charset [ ", sigma);
+//  printf("Discretized data contains %d classes with charset [ ", sigma);
   for (int i = 0; i < sigma; i++)
     /*printf("%d ", symbols[i]); printf("]\n");*/
-    printf("%d ", i);
-  printf("]\n");
+    //printf("%d ", i);
+  //printf("]\n");
   fseek(fp, 0, 0);
   free(line);
 }
@@ -721,7 +721,7 @@ void discretize_new(const char *stream_nm) {
       f4ss[id] << results[num_d][2][i] << "\t";
     f4ss[id] << "\n";
 
-    printf("%d\t%d\n", num_d, cols);
+    //printf("%d\t%d\n", num_d, cols);
 
     /*##############################################################*/
     /*store the qubic1.0 discretization output for further use*/
@@ -873,7 +873,7 @@ void discretize_new(const char *stream_nm) {
         }
       }
     }
-    printf("\n");
+    //printf("\n");
   }
   for (long long id = 0; id < rows; id++) {
     fprintf(F4, "%s",f4ss[id].str().c_str());
@@ -1256,7 +1256,7 @@ void discretize_rpkm(const char *stream_nm) {
       fprintf(F4, "%lf\t", results[num_d][2][i]);
     fprintf(F4, "\n");
 
-    printf("%d\t%d\n", num_d, cols);
+    //printf("%d\t%d\n", num_d, cols);
     /*############################################################################
      */
     /*F1 em.chars*/
@@ -1366,7 +1366,7 @@ void discretize_rpkm(const char *stream_nm) {
         }
       }
     }
-    printf("\n");
+    //printf("\n");
 
     /*############################################################################*/
   }

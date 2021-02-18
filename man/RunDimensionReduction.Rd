@@ -12,7 +12,7 @@ RunDimensionReduction(object, ...)
   object,
   mat.source = c("LTMG", "UMImatrix"),
   reduction = "umap",
-  dims = 1:15,
+  dims = seq_len(15),
   perplexity = 15,
   seed = 1
 )
@@ -21,7 +21,7 @@ RunDimensionReduction(object, ...)
   object,
   mat.source = c("LTMG", "UMImatrix"),
   reduction = "umap",
-  dims = 1:15,
+  dims = seq_len(15),
   perplexity = 15,
   seed = 1
 )

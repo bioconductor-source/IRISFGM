@@ -134,9 +134,10 @@ setMethod("RunDiscretization", "IRISFGM", .runDiscretization)
 #' 'tmp_expression.txt.chars', and biclsuter block named 'tmp_expression.txt.chars.block'.
 #' @examples
 #' # based on LTMG discretization
-#'example_object<- RunLTMG(example_object,Gene_use = "200")
-#'example_object <- CalBinaryMultiSignal(example_object)
-#'example_object <- RunBicluster(example_object, 
+#' data("example_object")
+#' example_object<- RunLTMG(example_object,Gene_use = "200")
+#' example_object <- CalBinaryMultiSignal(example_object)
+#' example_object <- RunBicluster(example_object, 
 #'                               DiscretizationModel = 'LTMG',
 #'                               OpenDual = FALSE,
 #'                               NumBlockOutput = 1000, 

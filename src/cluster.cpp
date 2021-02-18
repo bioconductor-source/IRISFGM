@@ -589,7 +589,7 @@ int cluster(FILE *fw, const std::vector<std::unique_ptr<Edge>> &edge_list) {
   /* writes character to the current position in the standard output (stdout)
    * and advances the internal file position indicator to the next position. It
    * is equivalent to putc(character,stdout).*/
-  putchar('\n');
+  //putchar('\n');
 
   sort_block_list(bb);
   const int blocks = report_blocks(fw, bb, bb.size());

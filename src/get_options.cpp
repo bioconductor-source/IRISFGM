@@ -187,7 +187,7 @@ bool get_options(int argc, char *argv[]) {
       po->IS_dummy = TRUE;
       break;
     case 'h':
-      puts(USAGE);
+      //puts(USAGE);
       return false;
     /*if expression does not match any constant-expression, control is
      * transferred to the statement(s) that follow the optional default label*/
@@ -197,7 +197,7 @@ bool get_options(int argc, char *argv[]) {
   }
   /* basic sanity check */
   if (is_valid && po->FN[0] == ' ') {
-    puts(USAGE);
+    //puts(USAGE);
     return false;
   }
   if (is_valid) {
