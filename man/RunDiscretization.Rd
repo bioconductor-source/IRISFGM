@@ -27,5 +27,8 @@ Run discretization based on Quantile method
 }
 \examples{
  data(example_object)
+# Due to generate intermediate files, please make sure to set working directory
+\donttest{
  example_object <- RunDiscretization(example_object, q = 0.06)
+ }
 }

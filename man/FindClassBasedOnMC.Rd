@@ -34,6 +34,7 @@ If you have a large dataset, We recommend you should use Seurat clustering wrapp
 data(example_object)
 example_object<- RunLTMG(example_object,Gene_use = "200")
 example_object <- CalBinaryMultiSignal(example_object)
+\donttest{
 example_object <- RunBicluster(example_object,
                               DiscretizationModel = 'LTMG',
                               OpenDual = FALSE,
@@ -41,4 +42,5 @@ example_object <- RunBicluster(example_object,
                               BlockOverlap = 0.7,
                               BlockCellMin = 15)
 example_object <- FindClassBasedOnMC(example_object)
+}
 }
