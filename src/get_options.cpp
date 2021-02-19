@@ -8,7 +8,7 @@
 #include "get_options.h"
 
 /***************************************************************************/
-static const char USAGE[] =
+/* static const char USAGE[] =
     "===================================================================\n\
 [Usage]\n\
 $ ./qubic -i filename [argument list]\n\
@@ -68,7 +68,7 @@ $ ./qubic -i filename [argument list]\n\
 [Output]\n\
 -o : number of blocks to report\n\
      default: 100\n\
-===================================================================\n";
+===================================================================\n"; */
 
 static void init_options() {
   /* default parameters */

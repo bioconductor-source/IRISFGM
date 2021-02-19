@@ -323,7 +323,7 @@ LTMG <- function(VEC, Zcut_G, k = 5) {
 #' @examples # If you want to explore DEG, we recommend you should use top 2000 highly variant gene. 
 #' data("example_object")
 #' example_object <- RunLTMG(example_object,
-#' Gene_use = "all",
+#' Gene_use = "200",
 #' k = 5)
 #' 
 .RunLTMG <- function(object, Gene_use = NULL, k = 5) {
