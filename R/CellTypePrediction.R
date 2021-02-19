@@ -177,6 +177,7 @@ CLUSTERING <- function(Raw, blocks, method = "MCL", K = NULL) {
 #'data(example_object)
 #'example_object<- RunLTMG(example_object,Gene_use = "200")
 #'example_object <- CalBinaryMultiSignal(example_object)
+#'# Due to generate intermedie files, please make sure to set working directory
 #'\donttest{
 #'example_object <- RunBicluster(example_object,
 #'                               DiscretizationModel = 'LTMG',

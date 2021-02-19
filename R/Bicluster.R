@@ -140,9 +140,9 @@ setMethod("RunDiscretization", "IRISFGM", .runDiscretization)
 #' data("example_object")
 #' example_object<- RunLTMG(example_object,Gene_use = "200")
 #' example_object <- CalBinaryMultiSignal(example_object)
-#' # Due to generate intermediate files, please make sure to set working directory
+#' # Due to generate intermedie files, please make sure to set working directory
 #' \donttest{
-#' #'example_object <- RunBicluster(example_object, 
+#' example_object <- RunBicluster(example_object, 
 #'                               DiscretizationModel = 'LTMG',
 #'                               OpenDual = FALSE,
 #'                               NumBlockOutput = 1000, 
