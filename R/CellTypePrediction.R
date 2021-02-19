@@ -177,6 +177,7 @@ CLUSTERING <- function(Raw, blocks, method = "MCL", K = NULL) {
 #'data(example_object)
 #'example_object<- RunLTMG(example_object,Gene_use = "200")
 #'example_object <- CalBinaryMultiSignal(example_object)
+#'\donttest{
 #'example_object <- RunBicluster(example_object,
 #'                               DiscretizationModel = 'LTMG',
 #'                               OpenDual = FALSE,
@@ -184,6 +185,7 @@ CLUSTERING <- function(Raw, blocks, method = "MCL", K = NULL) {
 #'                               BlockOverlap = 0.7,
 #'                               BlockCellMin = 15)
 #'example_object <- FindClassBasedOnMC(example_object)
+#'}
 .final <- function(object = NULL, method = "MCL", K = 5) {
     # chars file
     input <- paste0(getwd(), "/tmp_expression.txt.chars")

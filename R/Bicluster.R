@@ -52,7 +52,10 @@ NULL
 #' @return It will generate quantile based binary matrix.
 #' @examples 
 #'  data(example_object)
+#'# Due to generate intermediate files, please make sure to set working directory
+#' \donttest{
 #'  example_object <- RunDiscretization(example_object, q = 0.06)
+#'  }
 .runDiscretization <- function(object = NULL, q = 0.06) {
     message("writing temporary expression file ...")
     tmp.dir <- paste0(getwd(), "/tmp_expression.txt")
@@ -137,12 +140,15 @@ setMethod("RunDiscretization", "IRISFGM", .runDiscretization)
 #' data("example_object")
 #' example_object<- RunLTMG(example_object,Gene_use = "200")
 #' example_object <- CalBinaryMultiSignal(example_object)
-#' example_object <- RunBicluster(example_object, 
+#' # Due to generate intermediate files, please make sure to set working directory
+#' \donttest{
+#' #'example_object <- RunBicluster(example_object, 
 #'                               DiscretizationModel = 'LTMG',
 #'                               OpenDual = FALSE,
 #'                               NumBlockOutput = 1000, 
 #'                               BlockOverlap = 0.7, 
 #'                               BlockCellMin = 15)
+#'                               }
 #' 
 #' 
 .runBicluster <- function(object = NULL, DiscretizationModel = "Quantile", OpenDual = FALSE, Extension = 1.0, NumBlockOutput = 100, BlockOverlap = 0.7, BlockCellMin = 15) {
