@@ -37,3 +37,5 @@ Collate:
 biocViews: Software, GeneExpression, SingleCell, Clustering, DifferentialExpression, Preprocessing, DimensionReduction, Visualization, Normalization, DataImport
 Depends: 
     R (>= 4.1)
+Suggests:
+    rmarkdown
