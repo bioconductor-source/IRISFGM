@@ -1,6 +1,7 @@
 # IRIS-FGM
 IRIS-FGM has been accepted by Bioconductor.
 
+<img src= "http://bioconductor.org/shields/availability/release/IRISFGM.svg"> <img src= "http://bioconductor.org/shields/build/release/bioc/IRISFGM.svg"> <img src= "http://bioconductor.org/shields/years-in-bioc/IRISFGM.svg">
 
 ---<span style="color:green;">I</span>ntegrative sc<span style="color: red;">R</span>NA-Seq <span style="color: red;">I</span>nterpretation <span style="color: red;">S</span>ystem for <span style="color: red;">F</span>unctional <span style="color: red;">G</span>ene <span style="color: red;">M</span>odule analysis
 
