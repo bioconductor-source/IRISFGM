@@ -90,7 +90,7 @@ object <- CreateIRISFGMObject(InputMatrix_sub)
 
 2. Addmeta: this step can add customized cell label by user, the format of file passing to `meta.info` is data frame of which row name should be cell ID, and column name should be cell type.    
 ```{r add_metadata, eval= TRUE, echo = TRUE}
-my_meta <- read.table(url("https://bmbl.bmi.osumc.edu/downloadFiles/Yan_cell_label.txt"),header = TRUE,row.names = 1)
+my_meta <- read.table(url("https://raw.githubusercontent.com/BMEngineeR/IRISFGM-data/main/Data/Yan_expression.txt"),header = TRUE,row.names = 1)
 object <- AddMeta(object, meta.info = my_meta)
 ```
 
