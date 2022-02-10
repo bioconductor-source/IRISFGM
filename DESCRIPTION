@@ -1,11 +1,7 @@
 Package: IRISFGM
 Type: Package
 Title: Comprehensive Analysis of Gene Interactivity Networks Based on Single-Cell RNA-Seq
-<<<<<<< HEAD
-Version: 1.1.2
-=======
-Version: 1.3.0
->>>>>>> upstream/master
+Version: 1.3.1
 Date: 2020-12-22
 Authors@R: c(person("Yuzhou", "Chang", role = c("aut", "cre"),
                      email = "yuzhou.chang@osumc.edu"),
